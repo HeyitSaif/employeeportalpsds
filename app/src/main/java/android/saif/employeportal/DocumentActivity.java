@@ -2,97 +2,58 @@ package android.saif.employeportal;
 
 import android.animation.Animator;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import android.util.Log;
-import android.view.View;
-
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.core.view.GravityCompat;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-
-import android.view.MenuItem;
-
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.Menu;
-import android.webkit.WebView;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.prefs.AbstractPreferences;
-
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-    ImageView mImageView;
-    LinearLayout fab_icon;
+public class DocumentActivity extends AppCompatActivity {
+    RecyclerView mRecyclerView;
     FrameLayout gray_bg;
     LinearLayout Profilemenue;
     LinearLayout profile;
-    View menu_expaded;
-    ExpandableListAdapter expandableListAdapter;
-    ExpandableListView expandableListView;
-    List<MenuModel> headerList = new ArrayList<>();
+    LinearLayout fab_icon;
     FloatingActionButton fab;
-    HashMap<MenuModel, List<MenuModel>> childList = new HashMap<>();
+    View menu_expaded;
     private View belllayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mImageView = findViewById(R.id.nav_toggle);
-        belllayout = findViewById(R.id.bell_layout);
-        expandableListView = findViewById(R.id.expandableListView);
+        setContentView(R.layout.activity_document);
+        mRecyclerView = findViewById(R.id.recycler);
         menu_expaded = findViewById(R.id.menu_expanded);
+        belllayout = findViewById(R.id.bell_layout);
         Profilemenue = findViewById(R.id.Profile_menue);
         profile = findViewById(R.id.Profile);
         fab = findViewById(R.id.fab);
         fab_icon = findViewById(R.id.fabs);
         gray_bg = findViewById(R.id.background);
+        mRecyclerView.setAdapter(new MyAdapter());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(layoutManager);
         setlisteneres();
-        prepareMenuData();
-        populateExpandableList();
-        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        final NavigationView navigationView = findViewById(R.id.nav_view);
-
-
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-//                this, drawer, mImageView, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!drawer.isDrawerOpen(GravityCompat.START)) {
-                    drawer.openDrawer(GravityCompat.START);
-                } else
-                    drawer.closeDrawer(GravityCompat.START);
-            }
-        });
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void setlisteneres() {
         belllayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,NotificationActivity.class));
+                startActivity(new Intent(DocumentActivity.this, NotificationActivity.class));
             }
         });
         profile.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +72,7 @@ public class MainActivity extends AppCompatActivity
         attendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "attendence clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DocumentActivity.this, "attendence clicked", Toast.LENGTH_SHORT).show();
             }
         });
         gray_bg.setOnClickListener(new View.OnClickListener() {
@@ -337,111 +298,40 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+    private class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-
-    private void prepareMenuData() {
-        List<MenuModel> childModelsList = new ArrayList<>();
-        MenuModel menuModel = new MenuModel("Employee Portal", true, true, R.drawable.employeeportal,0); //Menu of Android Tutorial. No sub menus
-        headerList.add(menuModel);
-        childModelsList.add(new MenuModel("Document", false, false, R.drawable.nav_doc,0));
-        childModelsList.add(new MenuModel("Leaves", false, false, R.drawable.nav_leave,1));
-        childModelsList.add(new MenuModel("Petty Cash", false, false, R.drawable.nav_pettycash,2));
-        childModelsList.add(new MenuModel("Payslips", false, false, R.drawable.nav_pay,3));
-        childModelsList.add(new MenuModel("Salary Advance", false, false, R.drawable.nav_salary,0));
-        childModelsList.add(new MenuModel("Loans", false, false, R.drawable.nav_load,0));
-        childModelsList.add(new MenuModel("Assets", false, false, R.drawable.nav_asset,0));
-        childModelsList.add(new MenuModel("Savings", false, false, R.drawable.nav_sav,0));
-        if (menuModel.hasChildren) {
-            childList.put(menuModel,childModelsList);
+        public MyAdapter() {
 
         }
 
-        menuModel = new MenuModel("Profile", true, false, R.drawable.portal,0); //Menu of Java Tutorials
-        headerList.add(menuModel);
 
-        menuModel = new MenuModel("Communication", false, false, R.drawable.communication,0);
-        headerList.add(menuModel);
-        menuModel = new MenuModel("More", false, false, R.drawable.more,0);
-        headerList.add(menuModel);
-        menuModel = new MenuModel("Setting", false, false, R.drawable.setting,0);
-        headerList.add(menuModel);
+        @NonNull
+        @Override
+        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new MyViewHolder(LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.document_single, parent, false));
+        }
 
+        @Override
+        public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
+
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return 8;
+        }
     }
 
-    private void populateExpandableList() {
+    private class MyViewHolder extends RecyclerView.ViewHolder {
 
-        expandableListAdapter = new android.saif.employeportal.ExpandableListAdapter(this, headerList, childList);
-        expandableListView.setAdapter(expandableListAdapter);
 
-        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
 
-                if (headerList.get(groupPosition).isGroup) {
-                    if (!headerList.get(groupPosition).hasChildren) {
-//
-                        onBackPressed();
-                    }
-                }
-
-                return false;
-            }
-        });
-
-        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-
-                if (childList.get(headerList.get(groupPosition)) != null) {
-                    MenuModel model = childList.get(headerList.get(groupPosition)).get(childPosition);
-
-                }
-
-                return false;
-            }
-        });
+        }
     }
+
 }

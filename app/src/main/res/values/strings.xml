@@ -19,4 +19,27 @@
     <string name="more">More</string>
     <string name="settings">Settings</string>
     <string name="check_notifications"><![CDATA[Check out all of the announcements & notifications.]]></string>
+    <string name="pettycahs_header"><![CDATA[Request for Petty Cash & Get Paid]]></string>
+    <string name="meals_entertainment"><![CDATA[Meals & Entertainment]]></string>
+
+
+    <string-array name="expense">
+        <item>Petty Cash Expense</item>
+        <item>Lunch</item>
+    </string-array>
+
+    <string-array name="expense_type">
+        <item>Type</item>
+        <item>CASH</item>
+    </string-array>
+    <string-array name="payment_method">
+        <item>Payment Method</item>
+        <item>CASH</item>
+    </string-array>
+    <string name="title_activity_petty_cash">PettyCash</string>
+    <string name="title_activity_pay_slips">PaySlips</string>
+    <string name="monthly_income">Your monthly income deposited in your bank account.</string>
+    <string name="title_activity_leaves">LeavesActivity</string>
+    <string name="title_activity_document">DocumentActivity</string>
+    <string name="document_content">You added 3 new documents in this month.</string>
 </resources>
