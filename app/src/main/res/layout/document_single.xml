@@ -22,7 +22,7 @@
                 android:layout_width="27dp"
                 android:layout_height="35dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/ic_group_163"
+                android:background="@drawable/pdf_documents"
                 android:gravity="center"
                 android:text="pdf"
                 android:textColor="@color/white"/>

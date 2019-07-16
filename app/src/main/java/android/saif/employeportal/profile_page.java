@@ -1,79 +1,78 @@
 package android.saif.employeportal;
 
-import android.animation.Animator;
-import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-public class NotificationActivity extends AppCompatActivity {
+import android.animation.Animator;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
+public class profile_page extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private View menu_expaded;
-    private View gray_bg;
+    FrameLayout gray_bg;
     LinearLayout Profilemenue;
     LinearLayout profile;
-
-
+    View menu_expaded;
+    private View belllayout;
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notification_activity);
-        recyclerView=findViewById(R.id.recycler);
-
-        gray_bg = findViewById(R.id.gray_bg);
+        setContentView(R.layout.activity_profile_page);
         menu_expaded = findViewById(R.id.menu_expanded);
+        belllayout = findViewById(R.id.bell_layout);
         Profilemenue = findViewById(R.id.Profile_menue);
         profile = findViewById(R.id.Profile);
-        // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-setlisteners();
-        View back=findViewById(R.id.nav_toggle);
-        back.setOnClickListener(new View.OnClickListener() {
+        gray_bg = findViewById(R.id.background);
+        View nav_bar=findViewById(R.id.nav_toggle);
+        nav_bar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-        // specify an adapter (see also next example)
-
-        recyclerView.setAdapter(new MyAdapter());
+        View fab=findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+startActivity(new Intent(profile_page.this,Profile.class));
+            }
+        });
+        setlisteneres();
     }
-
-    private void setlisteners() {profile.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            togglemenue();
-        }
-    });
+    private void setlisteneres() {
+        belllayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(profile_page.this, NotificationActivity.class));
+            }
+        });
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                togglemenue();
+            }
+        });
         Profilemenue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 togglemenue();
             }
         });
+
         gray_bg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 if (menu_expaded.getVisibility() == View.VISIBLE)
                     togglemenue();
             }
         });
+
     }
+
     private void togglemenue() {
         if (menu_expaded.getVisibility() == View.GONE) {
             menu_expaded.animate()
@@ -171,38 +170,6 @@ setlisteners();
 
                 }
             });
-        }
-    }
-
-
-    private class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
-        
-        public MyAdapter() {
-
-        }
-
-
-        @NonNull
-        @Override
-        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new MyViewHolder(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.notification_single, parent, false));
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
-        }
-
-        @Override
-        public int getItemCount() {
-            return 4;
-        }
-    }
-
-    private class MyViewHolder extends RecyclerView.ViewHolder{
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
         }
     }
 }

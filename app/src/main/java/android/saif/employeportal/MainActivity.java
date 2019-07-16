@@ -67,6 +67,44 @@ public class MainActivity extends AppCompatActivity
         fab = findViewById(R.id.fab);
         fab_icon = findViewById(R.id.fabs);
         gray_bg = findViewById(R.id.background);
+        View Leaves=findViewById(R.id.leaves);
+        Leaves.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,LeavesActivity.class));
+            }
+        });
+        View Payslip=findViewById(R.id.payslip);
+        Payslip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,PaySlips.class));
+            }
+        });
+         View Messages=findViewById(R.id.messages);
+        Messages.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Messages.class));
+            }
+        });
+         View Documents=findViewById(R.id.documents);
+        Documents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,DocumentActivity.class));
+            }
+        });
+
+
+        View PettyCash=findViewById(R.id.PettyCash);
+        PettyCash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,PettyCash.class));
+            }
+        });
+
         setlisteneres();
         prepareMenuData();
         populateExpandableList();
@@ -423,6 +461,9 @@ public class MainActivity extends AppCompatActivity
                 if (headerList.get(groupPosition).isGroup) {
                     if (!headerList.get(groupPosition).hasChildren) {
 //
+                        if (headerList.get(groupPosition).menuName.equals("Profile")){
+                            startActivity(new Intent(MainActivity.this,profile_page.class));
+                        }
                         onBackPressed();
                     }
                 }

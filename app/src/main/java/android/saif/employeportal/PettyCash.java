@@ -78,6 +78,13 @@ public class PettyCash extends AppCompatActivity {
                 } else detail.setVisibility(View.GONE);
             }
         });
+        View back=findViewById(R.id.nav_toggle);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
     }
 
