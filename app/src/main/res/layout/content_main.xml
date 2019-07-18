@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F7F7F7"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    tools:showIn="@layout/app_bar_main"
+    android:layout_height="match_parent"
+    android:background="#F7F7F7"
+   >
 
 
     <FrameLayout
@@ -292,15 +294,27 @@
 
 
     </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topbar">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:gravity="center"
+android:orientation="vertical"
+ >
+
 
     <LinearLayout
         android:id="@+id/first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/topbar"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
+
         android:padding="5dp"
         >
 
@@ -722,4 +736,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
+</LinearLayout>
+    </ScrollView>
 </RelativeLayout>
+

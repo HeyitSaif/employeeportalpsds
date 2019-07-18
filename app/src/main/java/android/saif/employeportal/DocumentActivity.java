@@ -46,7 +46,15 @@ public class DocumentActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(new MyAdapter());
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
+        View back=findViewById(R.id.nav_toggle);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         setlisteneres();
+
     }
 
     private void setlisteneres() {
