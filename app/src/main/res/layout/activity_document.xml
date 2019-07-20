@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,20 +8,281 @@
     tools:context=".DocumentActivity">
 
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme">
 
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F7F7F7"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            >
+
+            <FrameLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:background="@color/nav_bg">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/wave1"
+                    />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/wave2"
+
+                    />
+
+
+            </FrameLayout>
+
+            <RelativeLayout
+                android:id="@+id/topbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?attr/actionBarSize">
+
+
+
+                <LinearLayout
+                    android:id="@+id/office"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/roundbg"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/icon"/>
+
+                    <TextView
+                        android:id="@+id/officename"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Demo Pen Head Office"
+                        android:textSize="12dp"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/group"/>
+                </LinearLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/office"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation=".6dp"
+                    app:contentPadding="5dp"
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginEnd="25dp"
+                        android:layout_marginRight="25dp"
+                        android:padding="10dp">
+
+
+                        <LinearLayout
+                            android:id="@+id/lastclock"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="5dp"
+                            android:layout_toLeftOf="@id/pettycashimageL"
+                            android:gravity="center"
+                            android:orientation="vertical"
+
+                            >
+
+                            <TextView
+                                android:id="@+id/Request"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="20dp"
+                                android:layout_toLeftOf="@id/pettycashimageL"
+                                android:gravity="center"
+                                android:text="@string/pettycahs_header"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                />
+
+                            <TextView
+                                android:id="@+id/uploadRecipt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/Request"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/round_button"
+                                android:paddingHorizontal="25dp"
+                                android:paddingVertical="5dp"
+                                android:text="Add New Document"
+                                android:textColor="@color/white"/>
+
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/pettycashimageL"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="10dp"
+                            android:padding="3dp">
+
+                            <ImageView
+                                android:id="@+id/pettycashimage"
+                                android:layout_width="88dp"
+                                android:layout_height="88dp"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/document_window"/>
+
+
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+            </RelativeLayout>
+            <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+
+            android:background="@color/nav_bg"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="pin"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/mainlogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/main_icon"/>
+
+                <ImageView
+                    android:id="@+id/nav_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="left"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:src="@drawable/ic_arrow_back_black_24dp"/>
+
+                <LinearLayout
+                    android:id="@+id/right_menuw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="10dp">
+
+
+                    <FrameLayout
+                        android:id="@+id/bell_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="10dp"
+                        >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/bell"/>
+
+                        <ImageView
+                            android:id="@+id/newnotification"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_gravity="left"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/elipse"/>
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/roundbg">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/reinaldo"/>
+
+                        <ImageView
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/group"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+
+</com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
     <include layout="@layout/content_document"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_gravity="bottom|end"
-        app:rippleColor="@color/nav_bg"
-        app:backgroundTint="@color/nav_bg"
-        android:src="@drawable/plusbutton"/>
+
     <FrameLayout
         android:id="@+id/background"
         android:layout_width="match_parent"
@@ -29,6 +290,11 @@
         android:background="#6FF7F7F7"
         android:visibility="gone"
         />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
     <LinearLayout
         android:id="@+id/menu_expanded"
         android:layout_marginRight="10dp"
@@ -329,11 +595,11 @@
     </LinearLayout>
     <LinearLayout
         android:id="@+id/fabs"
+        android:visibility="gone"
+        android:layout_above="@id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_alignParentRight="true"
-        android:layout_above="@id/fab"
         android:paddingRight="16dp"
         android:gravity="end|bottom"
         android:orientation="vertical">
@@ -574,4 +840,16 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
-</RelativeLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_gravity="bottom|end"
+            app:rippleColor="@color/nav_bg"
+            app:backgroundTint="@color/nav_bg"
+            android:src="@drawable/plusbutton"/>
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -69,6 +69,15 @@ public class Messages extends AppCompatActivity {
         messages.add(new model_message("",1,true));
         messages.add(new model_message("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, " +
                 "sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat," +
+                "sed diam voluptua. At vero eos et accusam et",0,false));  messages.add(new model_message("How's it going with the rebrand? Can't\n" +
+                "wait to see the concepts.",0,false));
+        messages.add(new model_message("All Done!",1,false));
+        messages.add(new model_message("Awesome",0,false));
+        messages.add(new model_message("Can you send it over? Would love a look!",0,false));
+        messages.add(new model_message("Of course. Here it is.",1,false));
+        messages.add(new model_message("",1,true));
+        messages.add(new model_message("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, " +
+                "sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat," +
                 "sed diam voluptua. At vero eos et accusam et",0,false));
 
 

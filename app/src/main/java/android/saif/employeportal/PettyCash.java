@@ -380,7 +380,7 @@ public class PettyCash extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-            return 4;
+            return 14;
         }
     }
 
